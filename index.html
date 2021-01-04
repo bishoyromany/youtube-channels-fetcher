@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Youtube API</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container" style="min-height: 100vh;">
+        <div class="row d-flex align-items-center" style="min-height: 100vh;">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="col-md-12">
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            Update API Token
+                        </div>
+            
+                        <div class="card-body">
+                            <form action="updateKey.php" method="POST">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="key">API Key</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="string" id="key" name="key" class="form-control" placeholder="Update API">
+                                            <small>If you get no error message, then api key was updated successfully.</small>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="row">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-success btn-block" name="action" value="save">Update API Key</button>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="col-md-12">
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            Fetch Youtube Channels
+                        </div>
+            
+                        <div class="card-body">
+                            <form action="index.php" method="POST">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="limit">Limit</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="number" id="limit" name="limit" value="50" class="form-control" placeholder="Limit Of Channels">
+                                            <small>Maximum Allowed Results Per Page</small>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="keyword">Keyword</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" id="keyword" name="q" class="form-control" placeholder="Search Keyword">
+                                            <small>Search Keyword</small>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="files">Files/Pages</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="number" value="1" id="files" name="files" class="form-control" placeholder="Count Of CSV Files">
+                                            <small>Count Of Pages Allowed To Be Downloaded</small>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="name">CSV File Name</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <input type="text" name="name" class="form-control" placeholder="CSV File Name">
+                                            <small>CSV/ZIP Downloaded File Name</small>
+                                        </div>
+                                    </div>
+                                </div>
+                    
+                                <div class="row">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-4">
+                                        <button class="btn btn-success btn-block" name="action" value="save">Action</button>
+                                    </div>
+                                    <div class="col-md-4"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</body>
+</html>
