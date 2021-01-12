@@ -77,6 +77,7 @@ class Youtube
 
         $this->data = $youtuneData;
         $this->pageToken = $this->data->nextPageToken;
+
         $ids  = [];
 
         foreach ($this->data->items as $d) {
@@ -84,6 +85,8 @@ class Youtube
         }
 
         $this->channelsData = $this->getChannelInformation($ids);
+
+        sleep(1);
 
         return $this;
     }

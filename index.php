@@ -10,21 +10,23 @@ if (!isset($_PORT['limit']) && !isset($_POST['q'])) {
     return false;
 }
 
-$files = $_POST['files'] ?? 1;
+$files = (int)$_POST['files'] ?? 1;
 $fileName = $_POST['name'] ?? "channels";
 $allFiles = [];
 $nextPage = '';
-for ($x = 0; $x < $files; $x++) {
-    $data = (new Youtube)->init($_POST['limit'], $nextPage, $_POST['q'], $_POST['name'] ?? "channels")->action()->convertIntoCSV()->download();
-    $nextPage = $data['nextPage'];
-    $allFiles[] = $data;
-}
 
+for ($x = 0; $x < $files; $x++) {
+    if ($nextPage !== false) {
+        $data = (new Youtube)->init($_POST['limit'], $nextPage, $_POST['q'], $fileName)->action()->convertIntoCSV()->download();
+        $nextPage = $data['nextPage'] ?? false;
+        $allFiles[] = $data;
+    }
+}
 
 
 if (count($allFiles) === 1) {
     header("Content-type: text/csv");
-    header("Content-Disposition: attachment; filename=" . $data['name'] . ".csv");
+    header("Content-Disposition: attachment; filename=" . $fileName . ".csv");
     header("Pragma: no-cache");
     header("Expires: 0");
 
@@ -34,7 +36,10 @@ if (count($allFiles) === 1) {
     $zipName = "$fileName.zip";
 
     if ($zip->open(getcwd() . '/' . $zipName, ZipArchive::CREATE) === TRUE) {
+        $dir_location = __DIR__ . "/tmp/" . $fileName . "_" . time();
+        mkdir($dir_location);
         for ($x = 0; $x < count($allFiles); $x++) {
+            file_put_contents($dir_location . '/' . $fileName . "_$x.csv", $allFiles[$x]['data']);
             $zip->addFromString($fileName . "_$x.csv",  $allFiles[$x]['data']);
         }
         $zip->close();
